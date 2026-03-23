@@ -137,7 +137,6 @@ scripts/open_source_audit.sh
 
 Additional docs:
 - contribution guide: [CONTRIBUTING.md](./CONTRIBUTING.md)
-- social post draft: [docs/social-post.zh.md](./docs/social-post.zh.md)
 
 ## Status
 
