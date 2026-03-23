@@ -14,6 +14,8 @@ You define a topic, attach trusted sources, and let the system:
 
 It is designed for single-machine operation first, with a modular architecture that can later be integrated into external agent systems.
 
+It can run standalone, or act as a monitoring backend for external agent frameworks through its REST API and tool-ready schema.
+
 ## Core Capabilities
 
 - topic-based monitoring with per-topic source buckets
@@ -25,6 +27,8 @@ It is designed for single-machine operation first, with a modular architecture t
 - Markdown briefings plus structured JSON outputs
 - Telegram outbound and inbound support
 - FastAPI server with Config UI and Brief UI
+- REST API for ingest, run control, and strategy workflows
+- tool-ready schema for external agent integration
 - local persistent storage for briefs, signals, runs, events, and source state
 
 ## Interfaces
@@ -47,6 +51,10 @@ API:
 - `POST /strategy/get`
 - `POST /strategy/history`
 - `GET /sources/advisories/latest`
+
+Agent integration:
+- tool-ready schema: `GET /tool/schema`
+- OpenClaw-style external orchestration is supported through the API layer and tool schema shape
 
 ## Quick Start
 
