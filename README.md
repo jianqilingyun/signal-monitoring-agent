@@ -10,7 +10,7 @@ You define a topic, attach trusted sources, and let the system:
 - deduplicate at the event level
 - rank and filter results
 - generate a readable briefing
-- deliver the result through Telegram, DingTalk, Email, or API
+- deliver the result through Telegram, DingTalk, or API
 
 The system is designed to run locally as a single-machine service and can later be integrated into external agent systems.
 
@@ -37,7 +37,7 @@ monitor_agent/
   core/                Config, pipeline, storage, scheduler, logging
   ingestion_layer/     RSS / HTML / Playwright ingestion
   inbound/             Telegram / DingTalk input listeners
-  notifier/            Telegram / DingTalk / Email outbound
+  notifier/            Telegram / DingTalk outbound
   signal_engine/       LLM signal extraction
   strategy_engine/     Strategy generation and source suggestions
   tts/                 Audio generation
@@ -139,6 +139,29 @@ Mode summary:
 - `scheduled`: run the local scheduler loop
 - `pw-login`: open a headed browser once for manual login/session bootstrap
 
+## Local Trial Notes
+
+Recommended 3-5 day trial flow:
+- day 1: validate source coverage and notification formatting
+- day 2-3: tune source list and confirm incremental ingestion is working
+- day 4-5: let scheduled mode run naturally and review briefing quality, stale/drop rates, and source advisories
+
+Primary outputs:
+- `data/briefs/`
+- `data/signals/`
+- `data/audio/` when TTS is enabled
+
+Run-level debug:
+- `data/runs/<run_id>/debug/selected_inputs.json`
+- `data/runs/<run_id>/debug/extracted_signals.json`
+- `data/runs/<run_id>/debug/source_incremental_stats.json`
+- `data/runs/<run_id>/debug/source_health_stats.json`
+- `data/runs/<run_id>/debug/source_advisories.json`
+
+Operational logs:
+- `data/logs/monitor_agent.log`
+- `data/summaries/YYYY-MM-DD.jsonl`
+
 ## Outputs
 
 The system writes local artifacts under `data/`:
@@ -155,7 +178,6 @@ The system writes local artifacts under `data/`:
 Outbound:
 - Telegram
 - DingTalk
-- Email
 
 Inbound:
 - Telegram
@@ -196,10 +218,20 @@ Safe defaults:
 - inbound chat channels are allowlisted
 - private/internal URLs are blocked from user-submitted fetches
 - user-submitted URLs do not rely on Playwright fallback unless explicitly enabled
+- source advisories never auto-delete or auto-rewrite your sources
+
+Do not commit:
+- `.env`
+- `MONITOR_API_TOKEN`
+- `TELEGRAM_BOT_TOKEN`
+- `TELEGRAM_CHAT_ID`
+- `TELEGRAM_ALLOWED_CHAT_IDS`
+- `DINGTALK_*`
+- `config/config.local.yaml`
+- `data/`
 
 Before publishing or sharing the repository, read:
 - [SECURITY.md](./SECURITY.md)
-- [README.local-safety.md](./README.local-safety.md)
 
 ## Development
 
@@ -216,7 +248,6 @@ scripts/open_source_audit.sh
 ```
 
 More details:
-- local trial guide: [README.local-trial.md](./README.local-trial.md)
 - contribution guide: [CONTRIBUTING.md](./CONTRIBUTING.md)
 - social post draft: [docs/social-post.zh.md](./docs/social-post.zh.md)
 
