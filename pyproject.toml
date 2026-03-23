@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "signal-monitoring-agent"
+version = "0.1.0"
+description = "Modular Signal Monitoring Agent with ingestion, extraction, filtering, briefing, and notifications"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Signal Monitoring Team" }]
+dependencies = [
+  "fastapi>=0.115.0",
+  "uvicorn[standard]>=0.30.0",
+  "pydantic>=2.8.0",
+  "pydantic-settings>=2.4.0",
+  "PyYAML>=6.0.1",
+  "APScheduler>=3.10.4",
+  "feedparser>=6.0.11",
+  "playwright>=1.45.0",
+  "openai>=1.51.0",
+  "httpx>=0.27.0",
+  "python-dotenv>=1.0.1",
+  "gTTS>=2.5.2",
+  "dingtalk-stream>=0.24.3"
+]
+
+[project.scripts]
+monitor-agent-api = "monitor_agent.main:run_api"
+monitor-agent-worker = "monitor_agent.main:run_worker"
+monitor-agent-local = "monitor_agent.local_runner:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["monitor_agent*"]
+
+[tool.black]
+line-length = 100
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I"]

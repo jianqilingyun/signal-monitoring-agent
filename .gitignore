@@ -1,0 +1,20 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+.DS_Store
+*.log
+*.egg-info/
+
+# Local configs
+config/config.local.yaml
+config/config.yaml
+
+# Local runtime state and artifacts
+data/
+playwright_profile/
+data/playwright_profile/
+
+# IDE / OS noise
+.vscode/
+.idea/

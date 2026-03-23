@@ -1,0 +1,73 @@
+sources:
+  rss:
+    - name: "OpenAI News"
+      url: "https://openai.com/news/rss.xml"
+      max_items: 20
+      timeout_seconds: 15
+
+    - name: "NVIDIA Blog"
+      url: "https://blogs.nvidia.com/feed/"
+      max_items: 20
+      timeout_seconds: 15
+
+    - name: "AWS ML Blog"
+      url: "https://aws.amazon.com/blogs/machine-learning/feed/"
+      max_items: 20
+      timeout_seconds: 15
+
+    - name: "Google News - AI infrastructure"
+      url: "https://news.google.com/rss/search?q=AI+infrastructure"
+      max_items: 25
+      timeout_seconds: 15
+
+    - name: "Google News - NVIDIA Blackwell"
+      url: "https://news.google.com/rss/search?q=NVIDIA+Blackwell"
+      max_items: 25
+      timeout_seconds: 15
+
+    - name: "Google News - GPU cloud"
+      url: "https://news.google.com/rss/search?q=GPU+cloud"
+      max_items: 25
+      timeout_seconds: 15
+
+    - name: "Google News - AI datacenter"
+      url: "https://news.google.com/rss/search?q=AI+datacenter"
+      max_items: 25
+      timeout_seconds: 15
+
+    - name: "Google News - LLM inference"
+      url: "https://news.google.com/rss/search?q=LLM+inference+optimization"
+      max_items: 25
+      timeout_seconds: 15
+
+    - name: "Google News - H100 H200 B200 MI300"
+      url: "https://news.google.com/rss/search?q=H100+H200+B200+MI300"
+      max_items: 25
+      timeout_seconds: 15
+
+    - name: "Google News - OpenAI Anthropic infrastructure"
+      url: "https://news.google.com/rss/search?q=OpenAI+Anthropic+infrastructure"
+      max_items: 25
+      timeout_seconds: 15
+
+  playwright:
+    - name: "OpenAI News Page"
+      url: "https://openai.com/news/"
+      wait_for_selector: "body"
+      content_selector: "body"
+      max_chars: 6000
+      timeout_ms: 30000
+
+    - name: "NVIDIA Data Center"
+      url: "https://www.nvidia.com/en-us/data-center/"
+      wait_for_selector: "body"
+      content_selector: "body"
+      max_chars: 6000
+      timeout_ms: 30000
+
+    - name: "Lambda Labs Blog"
+      url: "https://lambdalabs.com/blog"
+      wait_for_selector: "body"
+      content_selector: "body"
+      max_chars: 6000
+      timeout_ms: 30000

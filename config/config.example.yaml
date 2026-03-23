@@ -1,0 +1,95 @@
+domain: "AI Infrastructure"
+domains:
+  - "AI Infrastructure"
+
+# Preferred for UI/local usage: per-domain strategy buckets with simple source links.
+domain_profiles:
+  - domain: "AI Infrastructure"
+    focus_areas:
+      - "GPU supply"
+      - "cloud capex"
+    entities:
+      - "NVIDIA"
+      - "OpenAI"
+    keywords:
+      - "Blackwell"
+      - "inference cost"
+    source_links:
+      - "https://openai.com/news/rss.xml"
+      - "https://hnrss.org/frontpage"
+      # Advanced per-link rule (optional, generic; not site-hardcoded):
+      # - url: "https://example.com/news"
+      #   type: "playwright"
+      #   follow_links_enabled: true
+      #   max_links_per_source: 5
+      #   same_domain_only: true
+      #   article_url_patterns: ["/article/"]
+
+sources:
+  # Can stay empty when using domain_profiles.source_links.
+  rss: []
+  playwright: []
+
+schedule:
+  timezone: "Asia/Shanghai"
+  enabled: true
+  times:
+    - "07:00"
+
+filtering:
+  importance_threshold: 0.6
+  dedup_window_days: 14
+  novelty_window_days: 30
+  max_signals: 10
+  max_system_signals: 5
+  event_similarity_threshold: 0.75
+  event_candidate_top_k: 5
+  event_candidate_lookback_days: 3
+  inbox_match_threshold: 0.2
+  unknown_freshness_importance_threshold: 0.9
+
+llm:
+  provider: "openai"
+  model: "gpt-5-mini"
+  dedup_model: null
+  embedding_model: "text-embedding-3-small"
+  base_url: null
+  temperature: 0.1
+  dedup_temperature: 0.0
+  max_input_items: 40
+
+playwright:
+  headless: true
+  channel: null
+  extension_paths: []
+  launch_args: []
+
+briefing:
+  language: "zh"
+
+tts:
+  enabled: false
+  provider: "openai"
+  model: "gpt-4o-mini-tts"
+  voice: "alloy"
+
+notifications:
+  channel: "none"
+  channels: []
+  telegram:
+    enabled: false
+  dingtalk:
+    enabled: false
+    ingest_enabled: false
+
+storage:
+  root_dir: "./data"
+  base_path: "./data"
+
+api:
+  host: "127.0.0.1"
+  port: 8080
+  scheduler_enabled: false
+  auto_run_on_user_ingest: true
+  telegram_ingest_enabled: false
+  telegram_ingest_poll_interval_seconds: 2.0

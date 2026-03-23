@@ -1,0 +1,1 @@
+"""Signal filtering engine."""

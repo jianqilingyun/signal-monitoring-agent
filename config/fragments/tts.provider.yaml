@@ -1,0 +1,9 @@
+tts:
+  # Keep audio off by default for local trials; enable it explicitly in the UI when needed.
+  enabled: false
+  # Use gTTS by default for local trials (does not require LLM TTS API).
+  provider: "gtts"
+
+  # The fields below are used only when provider == "openai".
+  model: "gpt-4o-mini-tts"
+  voice: "alloy"

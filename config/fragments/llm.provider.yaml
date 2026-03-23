@@ -1,0 +1,17 @@
+llm:
+  # Keep provider as "openai" because this project uses OpenAI-compatible SDK calls.
+  provider: "openai"
+
+  # Model identifiers below can point to OpenAI-compatible providers
+  # (DeepSeek/OpenAI/others) as long as base_url + key are valid.
+  model: "deepseek-chat"
+  dedup_model: "deepseek-chat"
+  base_url: "https://api.deepseek.com/v1"
+
+  # Embedding can use a separate OpenAI-compatible endpoint (LM Studio).
+  embedding_model: "text-embedding-qwen3-embedding-0.6b"
+  embedding_base_url: "http://127.0.0.1:1234/v1"
+
+  temperature: 0.1
+  dedup_temperature: 0.0
+  max_input_items: 40
